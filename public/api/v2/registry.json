@@ -553,7 +553,21 @@
                     "radius": 1050
                 }           
             ]
-        }        
+        },
+        {
+            "id": 1584,
+            "name": "Kinfall",
+            "bosses": [
+                {
+                    "name": "Whispering Shadow",
+                    "coord": [
+                        3212,
+                        -7837
+                    ],
+                    "radius": 1600
+                }        
+            ]
+        }           
     ],
     "raids": {
         "1062": [

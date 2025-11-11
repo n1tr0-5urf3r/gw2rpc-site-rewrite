@@ -5,6 +5,9 @@ function Usage() {
       <p className="lead">Quick steps to get Discord Rich Presence working smoothly with Guild Wars 2.</p>
       <ul className="list-steps">
         <li>
+          Download the installer and install GW2RPC.
+        </li>        
+        <li>
           Run <code>gw2rpc.exe</code>. Keep it running in the background while you play.
         </li>
         <li>
@@ -18,7 +21,7 @@ function Usage() {
         </li>
       </ul>
       <div className="callout">
-        Place the launcher in <code>GW2FOLDER\\addons\\gw2rpc</code> to use it as your regular shortcut.
+        Place the launcher in <code>GW2FOLDER\\addons\\gw2rpc</code> to use it as your regular shortcut. The installer already does that for you.
       </div>
     </article>
   )

@@ -307,3 +307,17 @@ footer a { color: var(--text); }
   #nav { flex-wrap: wrap; gap: 6px; padding: 8px; }
   #nav li a { padding: 8px 10px; }
 }
+/* Modern polish overrides */
+/* Improve link transitions without changing colors */
+a { transition: color 150ms ease, text-decoration-color 150ms ease; }
+/* Larger, responsive example image */
+#main-ss { width: min(840px, 45%); }
+/* Clean bullet for features list */
+#features ul li::before { content: '•'; }
+/* Accessible focus styles */
+a:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); border-radius: 6px; }
+#download:focus-visible,
+#copy:focus-visible,
+.button--paypal:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring), 0 6px 16px rgba(88,101,242,0.35), 0 1px 0 rgba(255,255,255,0.06) inset; }
+/* Lead text helper */
+.lead { color: var(--muted); font-size: 1.05rem; margin: 6px auto 10px; text-align: center; }

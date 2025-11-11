@@ -4,7 +4,7 @@ function FAQ() {
       <h1>F.A.Q.</h1>
       <div className="faq-item">
         <h3>Can I get banned for this?</h3>
-        <p>No. It doesn’t interact with the game. It uses the Mumble API for read‑only data.</p>
+        <p>No. It doesn't interact with the game. It uses the Mumble API for read-only data.</p>
       </div>
       <div className="faq-item">
         <h3>What API permissions are required for the API key?</h3>
@@ -36,10 +36,11 @@ function FAQ() {
       </div>
       <div className="faq-item">
         <h3>How do I disable the raid announcer?</h3>
-        <p>Right‑click the GW2RPC tray icon and toggle “Announce Raids:”. This appears only if a webhook is configured.</p>
+        <p>Right-click the GW2RPC tray icon and toggle 'Announce Raids'. This appears only if a webhook is configured.</p>
       </div>
     </article>
   )
 }
 
 export default FAQ
+

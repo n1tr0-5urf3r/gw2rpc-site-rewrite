@@ -26,7 +26,7 @@ function Home() {
             <a href="#changelog">Changelog</a>
           </li>
           <li>
-            <a href="https://discord.gg/SSqkNrM">Support</a>
+            <a href="https://discord.gg/SSqkNrM" target="_blank" rel="noreferrer">Support</a>
           </li>
         </ul>
       </header>
@@ -59,7 +59,7 @@ function Home() {
             Download Installer
           </a>
           <a id="download" href="https://github.com/Maselkov/GW2RPC/releases/latest/download/gw2rpc.zip">
-            Download zip
+            Download ZIP
           </a>
         </div>
       </main>

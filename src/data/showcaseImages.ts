@@ -1,15 +1,13 @@
-// Absolute URLs pointing at the existing static assets served at /static
-export const showcaseImages: string[] = [
-  "/static/img/showcases/Trinterin_1.png",
-  "/static/img/showcases/Trinterin_2.png",
-  "/static/img/showcases/Trinterin_3.png",
-  "/static/img/showcases/breaking_1.png",
-  "/static/img/showcases/breaking_2.png",
-  "/static/img/showcases/breaking_3.png",
-  "/static/img/showcases/n1tr0_1.png",
-  "/static/img/showcases/n1tr0_2.png",
-  "/static/img/showcases/n1tr0_3.png",
-  "/static/img/showcases/solomona18.png",
-  "/static/img/showcases/tenn.png",
-]
+// Build a list of all showcase images found under the public folder at
+// /static/img/showcases. Vite's glob import with `as: 'url'` returns fully
+// resolved URLs that work both in dev and in the production bundle.
+// Note: Public assets live under /static, which is the served base path.
+// Vite supports globbing for assets when using `as: 'url'`.
+const showcaseGlobs = import.meta.glob('/static/img/showcases/*.{png,jpg,jpeg,webp,gif}', {
+  eager: true,
+  as: 'url',
+}) as Record<string, string>
 
+export const showcaseImages: string[] = Object.values(showcaseGlobs)
+  // Keep ordering stable by sorting on URL
+  .sort((a, b) => a.localeCompare(b))

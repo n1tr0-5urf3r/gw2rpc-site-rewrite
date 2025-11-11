@@ -89,3 +89,31 @@ jobs:
           rsync -rz --mkpath --delete \
             --omit-dir-times --no-perms --no-owner --no-group \
             dist/ "${SSH_USER}@${SSH_HOST}:${target_dir}/"
+
+  test:
+    name: Validate API registry endpoint
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check https://gw2rpc.info/api/v2/registry returns 200
+        run: |
+          set -euo pipefail
+          url="https://gw2rpc.info/api/v2/registry"
+          attempts=3
+          delay=5
+          code=0
+          for i in $(seq 1 "$attempts"); do
+            echo "Attempt $i/$attempts: GET $url"
+            code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 20 "$url" || echo 000)
+            echo "HTTP status: $code"
+            if [ "$code" = "200" ]; then
+              echo "Endpoint healthy."
+              exit 0
+            fi
+            if [ "$i" -lt "$attempts" ]; then
+              echo "Retrying in ${delay}s..."
+              sleep "$delay"
+            fi
+          done
+          echo "Endpoint did not return 200 after $attempts attempts (last: $code)." >&2
+          exit 1

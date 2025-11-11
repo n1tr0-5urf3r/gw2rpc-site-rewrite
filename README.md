@@ -1,21 +1,57 @@
-# GW2RPC Site (React rewrite)
+<div align="center">
+  <img src="./public/static/img/logo.png" alt="GW2RPC Logo" width="200"/>
 
-This folder hosts the React + TypeScript + Vite rewrite of the original Flask site and API.
+  <h2>GW2RPC Site Rewrite</h2>
 
-What's included:
-- Home page and content converted to React components.
-- Copy-Paste page at `/copy-paste` using query parameters `chat_code`, `name`, and `character`.
-- Links to the existing static assets under `/static` (no duplication of images required).
-- Static API endpoints for version and support at `/api/v1/build`, `/api/v1/support`, `/api/v2/build`, `/api/v2/support`.
+  ![Language](https://img.shields.io/badge/lang-typescript-darkred)
+  ![Built with React](https://img.shields.io/badge/built%20with-react-orange)
+  ![Version](https://img.shields.io/badge/v-1.0.0-yellow)
+[![Build & Deploy](https://github.com/n1tr0-5urf3r/gw2rpc-site-rewrite/actions/workflows/deploy.yml/badge.svg)](https://github.com/n1tr0-5urf3r/gw2rpc-site-rewrite/actions/workflows/deploy.yml)
+</div>
 
-Notes on API registry endpoints:
-- The Flask app exposed large registry payloads at `/api/v1/registry` and `/api/v2/registry`.
-- These can be replicated as static JSON files under `public/api/...` (filenames without extensions) for production hosting.
-- If you want me to include the full registry payloads now, I can generate them from `rpcsite.py` and add them as static files.
+## Overview
 
-Develop:
-- From this folder, run: `npm install` then `npm run dev`.
-- The app expects `/static/...` assets to be reachable at the site root during development (or adjust paths/move assets into `public/`).
+This repository contains a React + TypeScript + Vite rewrite of the GW2RPC website and lightweight API.
 
-Build:
-- `npm run build` then `npm run preview` to serve the built bundle.
+GW2RPC itself is a Guild Wars 2 addon that enables Discord Rich Presence. It can display:
+- Character name and class (profession/elite spec)
+- Current map and time spent on the map
+- Mount and combat status, active commander tag
+- Optional details with an API key (e.g., region, guild tag)
+- Boss detection in raids, fractals, and strikes
+- Multiboxing support via unique Mumble IDs
+- Optional Discord webhook raid announcer
+
+## Development
+
+Requirements: Node.js LTS and npm
+
+Run locally:
+1. `npm install`
+2. `npm run dev`
+
+Build and preview:
+- `npm run build`
+- `npm run preview`
+
+Notes:
+- Public assets are served from `/static/...` (files live in `public/static/...`).
+- Registry endpoints for the API are available in `public/api/...` and hosted at `api/v2/registry`.
+
+## Contributing
+
+Contributions are welcome! Please keep changes focused and consistent with the existing structure and style.
+
+## Donate
+
+GW2RPC is free and maintained by volunteers. If you find it helpful, please consider supporting development:
+
+[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UEBHM63V547KN)
+
+Thank you for supporting GW2RPC!
+
+## Links
+
+- GW2RPC (addon repository): https://github.com/Maselkov/GW2RPC
+- Hosted GW2RPC website: https://gw2rpc.info
+- Legacy flask-based website: https://github.com/n1tr0-5urf3r/gw2rpc-site

@@ -1,0 +1,251 @@
+html {
+  font-family: Roboto,Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-size: 10px;
+  background-color: #343A40;
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  font-size: 1.6rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 4.5rem; }
+
+header {
+  margin: 0 auto;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+#header-lg {
+  display: none; }
+
+#header-sm {
+  max-width: 100%;
+  height: auto; }
+
+#nav {
+  text-align: center;
+  list-style-type: none;
+  margin: 0px auto;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #5865f2; }
+  #nav li {
+    display: inline; }
+    #nav li a {
+      color: white;
+      text-align: center;
+      padding: 14px 16px; }
+      #nav li a:hover {
+        background-color: #111; }
+
+main {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+  border: solid 3px #5865f2;
+  border-radius: 7px;
+  color: white; }
+
+#main-ss {
+  padding-top: 5px;
+  border-radius: 3px; }
+
+hr {
+  width: 80%;
+  padding: 0;
+  color: #5865f2; }
+
+#features {
+  width: 430px auto;
+  padding-left: 400px auto;
+  padding-right: 400px auto; }
+  #features h2 {
+    margin: 0; }
+  #features ul {
+    list-style: none;
+    text-align: left; }
+    #features ul li::before {
+      content: "- "; }
+
+#download, #copy {
+  display: inline-block;
+  font-size: 1.75rem;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  background-color: #5865f2;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s; }
+  #download:hover, #copy:hover {
+    transition: 0.5s;
+    background-color: #F6F6F7; }
+
+  #chatcode, #chatcode_whisper {
+    width: 350px; 
+    height: 80px; 
+    text-align: center;
+    font-size: 18px;
+    background: white;
+    color: black;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #desc {
+    margin: 30px;
+  }
+
+  .button--paypal {
+    background: #0079c1;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2),0 1px 4px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.05);
+    border-radius: 21.5px;
+    padding: 9px 24px;
+    border: 0;
+    border-radius: 18px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    margin: 0 auto;
+    outline: 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    width: auto;
+    font-size: 2rem;
+    line-height: 25px;
+  }
+
+  .button--paypal::before {
+    
+  }
+
+  .button--paypal:hover {
+    background: #007ac1bd;
+  }
+
+article#usage {
+  width: 75%;
+  margin: 0 auto; }
+
+article#faq {
+  width: 75%;
+  margin: 0 auto; }
+  article#faq a {
+    color: #5865f2; }
+
+article#changelog {
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 50px; }
+  article#changelog summary {
+    display: inline-block;
+    cursor: pointer; }
+    article#changelog summary:hover {
+      color: #5865f2; }
+  article#changelog summary::-webkit-details-marker {
+    display: none; }
+  article#changelog h2 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0; }
+  article#changelog small {
+    display: block;
+    text-decoration: underline; }
+  article#changelog p::before {
+    content: "- "; }
+  article#changelog details {
+    border-bottom: 2px solid #5865f2;
+    margin-bottom: 3px; }
+
+footer {
+  display: block;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5.5rem;
+  background-color: #5865f2; }
+  footer p {
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    line-height: 1px;
+    margin-top: 15px; }
+  footer a {
+    text-decoration: none;
+    color: #343A40; }
+
+@media (min-width: 500px) {
+  #header-lg {
+    display: block;
+    max-width: 100%;
+    height: auto; }
+
+  #header-sm {
+    display: none; }
+
+  #nav {
+    font-size: 1em;
+    padding: 5px; }
+
+  main {
+    width: 500px; } }
+
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+ #snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+} 
+
+/*# sourceMappingURL=style.css.map */

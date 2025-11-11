@@ -1,0 +1,91 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+concurrency:
+  group: "deploy-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        env:
+          NODE_ENV: production
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: dist
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: dist
+
+      - name: Start SSH agent and add key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add server to known_hosts
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT }}
+        run: |
+          port="${SSH_PORT:-}"
+          if [ -z "$port" ]; then
+            echo "SSH_PORT secret or variable is not configured." >&2
+            exit 1
+          fi
+          echo "Adding ${SSH_HOST} to known_hosts using port ${port}"
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "$port" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          WEB_ROOT: ${{ secrets.WEB_ROOT }}
+        run: |
+          port="${SSH_PORT:-}"
+          target_dir="${WEB_ROOT:-}"
+          if [ -z "$SSH_HOST" ] || [ -z "$SSH_USER" ] || [ -z "$target_dir" ]; then
+            echo "SSH_HOST, SSH_USER, and WEB_ROOT must all be configured." >&2
+            exit 1
+          fi
+          if [ -z "$port" ]; then
+            echo "SSH_PORT secret or variable is not configured." >&2
+            exit 1
+          fi
+          echo "Deploying via rsync using port ${port} to ${SSH_HOST}:${target_dir}"
+          export RSYNC_RSH="ssh -p $port"
+          # Sync dist/ to the webroot, remove old files that no longer exist locally
+          rsync -rz --mkpath --delete \
+            --omit-dir-times --no-perms --no-owner --no-group \
+            dist/ "${SSH_USER}@${SSH_HOST}:${target_dir}/"
